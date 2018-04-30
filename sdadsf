@@ -1,0 +1,80 @@
+#include<bits/stdc++.h>
+using namespace std;
+int a[10000];
+
+ int compar(int l,int m,int r){
+   int c=0;
+   int b[r+1];
+   int i,j;
+   i=l;j=m+1;
+   int t=l;
+   while(i<=m && j<=r){
+     if(a[i]<=a[j]){
+       b[t]=a[i];
+      i++;
+       t++;
+     }
+     else{
+       c+=(m+1-i);
+       b[t]=a[j];
+       j++;
+       t++;
+     }
+   }
+   while(i<=m){
+     b[t]=a[i];
+     t++;
+     i++;
+   }
+   while(j<=r){
+     b[t]=a[i];
+     t++;
+     j++;
+   }
+   //cout«"s ";
+   for(int i=l;i<=r;i++){
+     a[i]=b[i];
+   //  cout«b[i]«" ";
+   }
+   //cout«endl;
+   //cout«"l r  "«l«"  "«r«"  "«c«endl;
+   return(c);
+
+ }
+
+
+int comp(int l,int r){
+  int m=l+r;
+  m/=2;
+  if(l==r){
+  //  cout«"X "«l«"  "«1«endl;
+    return 0;
+  }
+  if(r-l==1){
+    if(a[l]>a[r]){
+      int tmp=a[r];
+      a[r]=a[l];
+      a[l]=tmp;
+  //    cout«"Z "«l«"  "«1«endl;;
+      return 1;
+    }
+  //  cout«"Z "«l«"  "«0«endl;
+    return 0;
+  }
+  int c1=comp(l,m);
+  int c2=comp(m+1,r);
+  int c3=compar(l,m,r);
+  //cout«"l r"«l«"  "«r«"  "«c1+c2+c3«endl;
+  return(c1+c2+c3);
+}
+
+
+
+int main(){
+  int n;
+  cin»n;
+  for(int i=0;i<n;i++)
+  cin»a[i];
+  int out=comp(0,n-1);
+  cout«out;
+}
