@@ -3,7 +3,7 @@ lst=[]
 data = list(map(int,input().split()))
 for i in range(data[0]):
     for j in range(data[0]):
-        lst.append(999999999999999)
+        lst.append(0)
     matrix.append(lst)
     lst =[]
 for i in range(data[1]):
